@@ -1,0 +1,289 @@
+<html>
+<head>
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="./jquery.imgareaselect-0.9.10/css/imgareaselect-animated.css">
+ 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="./cloudinary/cloudinary_js-master/js/jquery.cloudinary.js"></script>
+<script src="./jquery.imgareaselect-0.9.10/scripts/jquery.imgareaselect.min.js"></script>
+<script src="./jquery.imgareaselect-0.9.10/scripts/jquery.imgareaselect.pack.js"></script>
+<script src="js/lightslider.js"></script>
+
+<style>
+		img 
+		{
+		    display: block;
+		    margin-left: auto;
+		    margin-right: auto;
+		}
+
+		ul {
+		    list-style-type: none;
+		    margin: 30;
+		    padding: 0;
+		    overflow: hidden;
+		    background-color: #111; 
+		}
+
+		li {
+		    float: left;
+		}
+
+		li button {
+		    display: block;
+		    color: white;
+		    text-align: center;
+		    padding: 0px 0px;
+		    text-decoration: none;
+		}
+
+		li button:hover {
+		    background-color: #111;
+		}
+
+		.column {
+		  float: left;
+		  width: 33.33%;
+		  padding: 10px;
+
+		}
+
+		/* Clear floats after image containers */
+		.row::after {
+		  content: "";
+		  clear: both;
+		  display: table;
+		  
+		}
+
+		 
+</style>
+
+</head>
+
+<body>
+ 
+<!-- <script type="text/javascript">
+
+	$.cloudinary.config({ 
+		  cloud_name: 'diukn5sr6', 
+		  api_key: '335317579573276', 
+		  api_secret: 'phSrYWbXf_TNYDToLyqzptrnU88' 
+		});	
+
+	$.cloudinary.image("http://mdb.ibcdn.com/665f4c54621811e6890f40f2e9694aa0.jfif", {type: "fetch"});
+
+
+</script> -->
+
+
+<h1 align ="center" style="font size:100px" style="font-family:courier;"> Image Editor </h1>
+ 
+
+<ul>
+<li><button id="button1" ><img src="./cloudinary/icons/rotate-left.svg" ></button></li>
+<li><button id="button2" ><img src="./cloudinary/icons/rotate-right.svg" ></button></li>
+<li><button id="button3" ><img src="./cloudinary/icons/crop.svg" ></button></li>
+<li><button id="button4" ><img src="./cloudinary/icons/accept.svg" ></button></li>
+<li><button id="button5" ><img src="./cloudinary/icons/cancel.svg" ></button></li>
+<li><button id="button6" ><img src="./cloudinary/icons/undo.svg" ></button></li>
+<li><button id="button7"><img src="./cloudinary/icons/save.svg" ></button> 
+</li>
+</ul>
+  
+ 
+
+<img id ="target">
+<br><br>
+ 
+
+<div class="row" id="parent">
+
+</div>
+
+<script type="text/javascript">
+	
+
+	var cloud ;
+	var string;
+	var prev_string;
+	var string_img;
+
+	var width;
+	var height;
+	var x1;
+	var y1;
+ 	
+ 	var counter = 0;
+
+
+ 	var count = 1;
+	var id;
+
+	function create_thumbnail(src)
+	{
+		id  = count.toString();
+		let x = document.createElement("IMG");
+	    x.setAttribute("src", src);
+	    x.setAttribute("id", id);
+	    //x.setAttribute("style", "width:100%");
+	    x.setAttribute("class", "column");
+		
+		document.getElementById("parent").appendChild(x);
+	   	
+	   	count = count +1;
+	    
+	    bind(id);
+	}
+
+	function bind(id)
+	{
+		let str = "#" + id;
+		$(str).bind('click',function() {clickimage(id)});
+	}
+
+	function clickimage(parameter1)
+	{
+		 
+		document.getElementById("target").src = document.getElementById(parameter1).src ;
+	}
+
+	function set_credentials(cloud_name, api_key, api_secret)
+	{
+		$.cloudinary.config({ 
+		  cloud_name: cloud_name, 
+		  api_key: api_key, 
+		  api_secret: api_secret 
+		});	
+
+		cloud = cloud_name;
+
+	}
+
+
+	function getURl(parameter1)
+	{
+			document.getElementById("target").src = parameter1;
+			$.cloudinary.image(parameter1, {type: "fetch"});
+			string = "http://res.cloudinary.com/" + cloud + "/image/fetch/";
+			prev_string = string;
+			// var split = parameter1.split("/");
+			// string_img = split[split.length - 1];
+
+			string_img = parameter1;
+			 
+			 
+	}
+
+
+	function rotateleft() 	 
+	{
+	 	if(counter == 0)
+	 	{
+		 	prev_string = string ;
+		 	string = string + "a_"+ 270 +"/" ;
+		 	document.getElementById("target").src =  string + string_img;
+		}
+	}
+
+
+	function rotateright() 	 
+	{
+	 	if(counter == 0)
+	 	{
+		 	prev_string = string ;
+		 	string = string + "a_"+ 90 +"/" ;
+		 	document.getElementById("target").src = string + string_img;
+		 	//angle = angle + 90 ;
+		 	//  $.cloudinary.image("domokun.jpg" , {angle:270});
+	 	}
+	}
+
+	function crop() 	 
+	{
+	 	 $('#target').imgAreaSelect({
+        	handles: true,
+        	onSelectEnd: function (img, selection) 
+        	{
+        		//alert('topleftx: ' + selection.x1 + '; toplefty1: ' + selection.y1 + '; bottomrightx: ' + selection.x2 +'; bottomrighty: ' + selection.y2);
+        		counter = 1;
+        		width = selection.x2 - selection.x1;
+        		height = selection.y2 - selection.y1;
+        		x1 = selection.x1;
+        		y1 = selection.y1;        		 
+        		
+   			}
+
+   		 });
+	}
+
+
+	function accept() 	 
+	{
+	 	if(counter == 1)
+	 	{
+		 	$('#target').imgAreaSelect({remove:true});
+		 	prev_string = string ;		 	 
+		 	string =  string + "x_"+ x1 + ",y_"+ y1+",w_"+width+",h_"+height+",c_crop/";
+		 	document.getElementById("target").src = string + string_img;
+		 	counter = 0;
+
+		}
+        		
+
+   	}
+
+   	function cancel() 	 
+	{
+	 	counter = 0;
+	 	$('#target').imgAreaSelect({remove:true});	 		
+        		
+   	}
+
+   	function undo() 	 
+	{
+	 	if(counter==0)
+	 	{
+		 	document.getElementById("target").src = prev_string + string_img;	
+		 	string = prev_string;
+        		
+        }
+   	}
+
+
+</script>
+
+<script type="text/javascript">
+
+	
+	create_thumbnail("image.png");	
+	create_thumbnail("image.jpg");
+	create_thumbnail("domokun.jpg");
+	
+ 
+	
+
+	set_credentials('xxxxxxxxx', 'xxxxxxxxxxxxxxx', 'xxxxxxxxxxxxxxxxxxxxxxxxxxx');
+	getURl("http://mdb.ibcdn.com/665f4c54621811e6890f40f2e9694aa0.jfif");
+
+
+	document.getElementById("button1").onclick = function() {rotateleft()}; 	 //var angle = 0 ;	 
+	document.getElementById("button2").onclick = function() {rotateright()};	
+	document.getElementById("button3").onclick = function() {crop()};
+	document.getElementById("button4").onclick = function() {accept()};
+	document.getElementById("button5").onclick = function() {cancel()};
+	document.getElementById("button6").onclick = function() {undo()};
+
+	 // document.getElementById("target").src = "http://res.cloudinary.com/diukn5sr6/image/upload/domokun.jpg"; 
+	 // var string = "http://res.cloudinary.com/diukn5sr6/image/upload/" ;
+	 // var prev_string = string ;
+
+
+	
+
+</script>
+
+</body>
