@@ -3,41 +3,48 @@
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="./jquery.imgareaselect-0.9.10/css/imgareaselect-animated.css">
- 
+<link rel="stylesheet"  href="./lightslider-master/src/css/lightslider.css"/>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script src="./cloudinary/cloudinary_js-master/js/jquery.cloudinary.js"></script>
 <script src="./jquery.imgareaselect-0.9.10/scripts/jquery.imgareaselect.min.js"></script>
 <script src="./jquery.imgareaselect-0.9.10/scripts/jquery.imgareaselect.pack.js"></script>
-<script src="js/lightslider.js"></script>
+<script src="./lightslider-master/src/js/lightslider.js"></script> 
+ 
 
 <style>
-		img 
+	/*	img 
 		{
 		    display: block;
 		    margin-left: auto;
 		    margin-right: auto;
-		}
+		}*/
 
 		ul {
+			display: block;
 		    list-style-type: none;
-		    margin: 30;
-		    padding: 0;
-		    overflow: hidden;
-		    background-color: #111; 
+		    padding-left: 300;
+		    padding-top: 30;
+            margin: 10;
+		    overflow: hidden; 
+
+
 		}
 
 		li {
 		    float: left;
+
 		}
 
 		li button {
-		    display: block;
+		    /*display: block;*/
 		    color: white;
 		    text-align: center;
 		    padding: 0px 0px;
 		    text-decoration: none;
+		    border-width: 0;
+		    margin-right: 80px
 		}
 
 		li button:hover {
@@ -57,6 +64,26 @@
 		  clear: both;
 		  display: table;
 		  
+		}
+
+
+		.demo .item{
+            margin-bottom: 60px;
+        }
+		.content-slider li{
+		    background-color: #ed3020;
+		    text-align: center;
+		    color: #FFF;
+		}
+		.content-slider h3 {
+		    /*margin: 0;*/
+		    padding: 0px 0;
+		}
+		.demo{
+			width: auto;
+			/*margin: 200px;*/
+			display: block;
+			text-align: center;
 		}
 
 		 
@@ -80,35 +107,135 @@
 </script> -->
 
 
-<h1 align ="center" style="font size:100px" style="font-family:courier;"> Image Editor </h1>
+<script>
+
+		
+
+    	$(document).ready(function() {
+			// $("#content-slider").lightSlider({
+   //              loop:true,
+   //              keyPress:true
+   //          });
+
+            var slider = $('#image-gallery').lightSlider({
+                gallery:true,
+                item:1,
+                thumbItem:8,
+                slideMargin: 0,
+                speed:500,
+                // auto:true,
+                loop:false,
+                keyPress:true,
+                adaptiveHeight: false,
+                onSliderLoad: function() {
+                	
+                	var num = 1;
+    				image_id = num.toString();
+    				getURl(imgArray[(slider.getCurrentSlideCount() - 1)].src); 
+                    $('#image-gallery').removeClass('cS-hidden');
+                    
+                },
+                onAfterSlide: function()
+                {
+                	image_id = (slider.getCurrentSlideCount()).toString();
+                	getURl(imgArray[(slider.getCurrentSlideCount() - 1)].src); 
+                	//alert(typeof(image_id));
+                	//alert(document.getElementById("2").src);
+                }  
+            });
+
+            // $('#getCurrentSlideCount').click(function(){
+            //     getURl(imgArray[(slider.getCurrentSlideCount() - 1)].src); 
+            // });
+		});
+
+</script>
+
+
+<!-- <h1 align ="center" style="font size:100px" style="font-family:courier;"> Image Editor </h1> -->
+ 
+ 
+<ul>
+<li><button id="button1" ><img src="./icons/rotate_left.jpg" ></button></li>
+<li><button id="button2" ><img src="./icons/rotate_right.000.jpg" ></button></li>
+<li><button id="button3" ><img src="./icons/Crop.2.513.jpg" ></button></li>
+<li><button id="button4" ><img src="./icons/Status_check_mark_yes_circle.04.512.jpg" ></button></li>
+<li><button id="button5" ><img src="./icons/Status_check_mark_no.512.jpg" ></button></li>
+<li><button id="button6" ><img src="./icons/undo.000.jpg" ></button></li>
+ 
+</ul>
  
 
-<ul>
-<li><button id="button1" ><img src="./cloudinary/icons/rotate-left.svg" ></button></li>
-<li><button id="button2" ><img src="./cloudinary/icons/rotate-right.svg" ></button></li>
-<li><button id="button3" ><img src="./cloudinary/icons/crop.svg" ></button></li>
-<li><button id="button4" ><img src="./cloudinary/icons/accept.svg" ></button></li>
-<li><button id="button5" ><img src="./cloudinary/icons/cancel.svg" ></button></li>
-<li><button id="button6" ><img src="./cloudinary/icons/undo.svg" ></button></li>
-<li><button id="button7"><img src="./cloudinary/icons/save.svg" ></button> 
-</li>
-</ul>
+<script type="text/javascript">
+	
+
+
+
+</script>
+
+
+<div class="demo">
+        <div class="item">            
+            <div class="clearfix">
+                <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
+                    <!-- <li data-thumb="image.jpg"> 
+                        <img src="image.jpg" />
+
+
+                         </li> -->
+
+  <!--                    <li data-thumb="http://res.cloudinary.com/diukn5sr6/image/upload/domokun.jpg"> 
+                        <img src="http://res.cloudinary.com/diukn5sr6/image/upload/domokun.jpg" id="1">
+                         </li>
+
+                    <li data-thumb="http://mdb.ibcdn.com/665f4c54621811e6890f40f2e9694aa0.jfif"> 
+                        <img src="http://mdb.ibcdn.com/665f4c54621811e6890f40f2e9694aa0.jfif" id="2">
+                         </li>
+
+                     <li data-thumb="http://res.cloudinary.com/diukn5sr6/image/upload/domokun.jpg"> 
+                        <img src="http://res.cloudinary.com/diukn5sr6/image/upload/domokun.jpg" id="3">
+                         </li>
+
+ -->
+
+                 <!--    <li data-thumb="http://upload.wikimedia.org/wikipedia/commons/4/46/Jennifer_Lawrence_at_the_83rd_Academy_Awards.jpg"> 
+                        <img src="http://upload.wikimedia.org/wikipedia/commons/4/46/Jennifer_Lawrence_at_the_83rd_Academy_Awards.jpg" />
+                         </li> -->
+                   <!--  <li data-thumb="image.jpg"> 
+                        <img src="image.jpg" />
+                         </li> -->
+                   
+                    <!-- <li data-thumb="domokun.jpg"> 
+                        <img src="domokun.jpg" />
+                         </li>
+                    <li data-thumb="image.jpg"> 
+                        <img src="image.jpg" />
+                         </li>
+                    <li data-thumb="image.png"> 
+                        <img src="image.png" />
+                         </li> -->
+                </ul>
+            </div>
+	    </div>        
+</div>	
+
   
  
 
-<img id ="target">
-<br><br>
+
  
 
 <div class="row" id="parent">
 
 </div>
 
+
+
 <script type="text/javascript">
 	
 
 	var cloud ;
-	var string;
+	var string;	
 	var prev_string;
 	var string_img;
 
@@ -123,16 +250,22 @@
  	var count = 1;
 	var id;
 
+	var image_id;
+
 	function create_thumbnail(src)
 	{
+		var li = document.createElement("li");
+
 		id  = count.toString();
+		li.setAttribute("data-thumb",src);
+
 		let x = document.createElement("IMG");
 	    x.setAttribute("src", src);
 	    x.setAttribute("id", id);
-	    //x.setAttribute("style", "width:100%");
-	    x.setAttribute("class", "column");
-		
-		document.getElementById("parent").appendChild(x);
+
+	 	li.appendChild(x);
+
+	 	document.getElementById("image-gallery").appendChild(li);
 	   	
 	   	count = count +1;
 	    
@@ -145,11 +278,7 @@
 		$(str).bind('click',function() {clickimage(id)});
 	}
 
-	function clickimage(parameter1)
-	{
-		 
-		document.getElementById("target").src = document.getElementById(parameter1).src ;
-	}
+	 
 
 	function set_credentials(cloud_name, api_key, api_secret)
 	{
@@ -166,8 +295,8 @@
 
 	function getURl(parameter1)
 	{
-			document.getElementById("target").src = parameter1;
-			$.cloudinary.image(parameter1, {type: "fetch"});
+			document.getElementById(image_id).src = parameter1;
+			//  imp line----->	$.cloudinary.image(parameter1, {type: "fetch"});
 			string = "http://res.cloudinary.com/" + cloud + "/image/fetch/";
 			prev_string = string;
 			// var split = parameter1.split("/");
@@ -185,7 +314,13 @@
 	 	{
 		 	prev_string = string ;
 		 	string = string + "a_"+ 270 +"/" ;
-		 	document.getElementById("target").src =  string + string_img;
+		 	 
+		 	document.getElementById(image_id).src =  string + string_img;
+
+		 	var num = parseInt(image_id);
+		 	imgArray[num-1].src = document.getElementById(image_id).src ;
+		 	 
+		// 	alert(document.getElementById(image_id).src);
 		}
 	}
 
@@ -196,15 +331,18 @@
 	 	{
 		 	prev_string = string ;
 		 	string = string + "a_"+ 90 +"/" ;
-		 	document.getElementById("target").src = string + string_img;
+		 	document.getElementById(image_id).src = string + string_img;
 		 	//angle = angle + 90 ;
 		 	//  $.cloudinary.image("domokun.jpg" , {angle:270});
+
+		 	var num = parseInt(image_id);
+		 	imgArray[num-1].src = document.getElementById(image_id).src ;
 	 	}
 	}
 
 	function crop() 	 
 	{
-	 	 $('#target').imgAreaSelect({
+	 	 $("#"+image_id).imgAreaSelect({
         	handles: true,
         	onSelectEnd: function (img, selection) 
         	{
@@ -213,7 +351,9 @@
         		width = selection.x2 - selection.x1;
         		height = selection.y2 - selection.y1;
         		x1 = selection.x1;
-        		y1 = selection.y1;        		 
+        		y1 = selection.y1;   
+
+        		     		 
         		
    			}
 
@@ -225,11 +365,16 @@
 	{
 	 	if(counter == 1)
 	 	{
-		 	$('#target').imgAreaSelect({remove:true});
+		 	$('#'+image_id).imgAreaSelect({remove:true});
 		 	prev_string = string ;		 	 
 		 	string =  string + "x_"+ x1 + ",y_"+ y1+",w_"+width+",h_"+height+",c_crop/";
-		 	document.getElementById("target").src = string + string_img;
+		 	document.getElementById(image_id).src = string + string_img;
 		 	counter = 0;
+
+		 	var num = parseInt(image_id);
+		 	imgArray[num-1].src = document.getElementById(image_id).src ;
+
+		 	 
 
 		}
         		
@@ -239,7 +384,7 @@
    	function cancel() 	 
 	{
 	 	counter = 0;
-	 	$('#target').imgAreaSelect({remove:true});	 		
+	 	$('#'+image_id).imgAreaSelect({remove:true});	 		
         		
    	}
 
@@ -247,9 +392,10 @@
 	{
 	 	if(counter==0)
 	 	{
-		 	document.getElementById("target").src = prev_string + string_img;	
+		 	document.getElementById(image_id).src = prev_string + string_img;	
 		 	string = prev_string;
-        		
+		 	var num = parseInt(image_id);
+		 	imgArray[num-1].src = document.getElementById(image_id).src ;        		
         }
    	}
 
@@ -259,15 +405,45 @@
 <script type="text/javascript">
 
 	
-	create_thumbnail("image.png");	
-	create_thumbnail("image.jpg");
-	create_thumbnail("domokun.jpg");
-	
- 
+	// create_thumbnail("image.png");	
+	// create_thumbnail("image.jpg");
+	// create_thumbnail("domokun.jpg");
 	
 
-	set_credentials('xxxxxxxxx', 'xxxxxxxxxxxxxxx', 'xxxxxxxxxxxxxxxxxxxxxxxxxxx');
-	getURl("http://mdb.ibcdn.com/665f4c54621811e6890f40f2e9694aa0.jfif");
+	// create_thumbnail("http://res.cloudinary.com/diukn5sr6/image/upload/domokun.jpg");
+	// create_thumbnail("http://mdb.ibcdn.com/665f4c54621811e6890f40f2e9694aa0.jfif");
+	// create_thumbnail("http://res.cloudinary.com/diukn5sr6/image/upload/domokun.jpg");
+
+	var imgArray = new Array();
+		
+		 
+
+		for(i=0; i<9 ;i++)
+		{
+			imgArray[i] = new Image();
+
+			if(i%2==0)
+			{
+				var src = 'http://res.cloudinary.com/diukn5sr6/image/upload/domokun.jpg';
+				imgArray[i].src = src ;
+				create_thumbnail(src) ;
+
+			}
+
+			else
+			{
+				var src = 'http://mdb.ibcdn.com/665f4c54621811e6890f40f2e9694aa0.jfif';	
+				imgArray[i].src = src ;
+				create_thumbnail(src) ;
+			}
+
+		}
+
+
+
+ 	
+	set_credentials('diukn5sr6', '335317579573276', 'phSrYWbXf_TNYDToLyqzptrnU88');
+	//getURl("http://mdb.ibcdn.com/665f4c54621811e6890f40f2e9694aa0.jfif");
 
 
 	document.getElementById("button1").onclick = function() {rotateleft()}; 	 //var angle = 0 ;	 
