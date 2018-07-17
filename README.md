@@ -1,6 +1,6 @@
-# i mage_editor
+ 
 
-## MY IMAGE EDITOR
+# MY IMAGE EDITOR
 
 
 
