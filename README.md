@@ -3,6 +3,7 @@
 MY IMAGE EDITOR
 
 
+
 ALL ABOUT IT...
 
 This image editor is a web based image editor using Javascript. It is based on optimization of image processing and uses Cloudinary's client libraries (SDKs)(a cloud based service that provides end to end image management solution) which wrap the upload API and simplify integration with websites and mobile applications for image transformations. It supports basic image transformations like rotation, crop and undo. It works by uploading a given image on the cloudinary account. All the transformations are requested by calling their API through URL modifications. 
