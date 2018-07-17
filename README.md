@@ -13,10 +13,10 @@ This image editor is a web based image editor using Javascript. It is based on o
 
 4) Functionalities of rotateleft(), rotateright(), crop(), accept(), cancel(), undo() are provided.
 
-DEMO 
+DEMO
 Refer to samplepopup.html. The code contains proper documentation. 
 
-Dependencies
+DEPENDENCIES
 All the required CSS and Javascript files are attached within the folder and commented out. In demo file, I have used the link of the files at our local server. 
 
 HOW TO USE ?
