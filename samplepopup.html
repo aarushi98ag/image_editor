@@ -1,3 +1,4 @@
+<!-- This code is written by Aarushi Agarwal.A web based image editor using Javascript and Cloudinary services. -->
 <!doctype html>
 <html>
 	<head>
@@ -36,13 +37,14 @@
 				<h4 class="popHdr" style="text-align: center;">HELLO</h4>
 				<div class="popBody">
 					<script>
+						// Slider styling
 						$(document).ready(function() {
 						var slider = $('#image-gallery').lightSlider({
 		                gallery:true,
 		                item:1,
 		                thumbItem:8,
 		                slideMargin: 0,
-		                speed:100,
+		                speed:50,
 		                // auto:true,
 		                loop:false,
 		                keyPress:true,
@@ -112,7 +114,7 @@
 <script type="text/javascript">
 	
 
-	var cloud ;
+	var cloud ;	//cloud name for the Cloudinary Account
 	var string;	
 	var prev_string;
 	var string_img;
@@ -132,6 +134,22 @@
 
 	var scale ="h_300,w_300/"
 
+
+	//Set the credetials of the associated cloudinary account
+	function set_credentials(cloud_name, api_key, api_secret)
+	{
+		$.cloudinary.config({ 
+		  cloud_name: cloud_name, 
+		  api_key: api_key, 
+		  api_secret: api_secret 
+		});	
+
+		cloud = cloud_name;
+
+	}
+
+
+	//Add image to the slider
 	function create_thumbnail(src)
 	{
 		var li = document.createElement("li");
@@ -148,30 +166,11 @@
 	   	
 	   	count = count + 1;
 	    
-	    //bind(id);
 	}
-
-	// function bind(id)
-	// {
-	// 	let str = "#" + id;
-	// 	$(str).bind('click',function() {clickimage(id)});
-	// }
 
 	 
-
-	function set_credentials(cloud_name, api_key, api_secret)
-	{
-		$.cloudinary.config({ 
-		  cloud_name: cloud_name, 
-		  api_key: api_key, 
-		  api_secret: api_secret 
-		});	
-
-		cloud = cloud_name;
-
-	}
-
-
+	 
+	// Upload the image to cloudinary
 	function getURl(parameter1)
 	{
 			document.getElementById(image_id).src = parameter1;
@@ -182,16 +181,14 @@
 			 
 	}
 
-
+	//Rotate the image 90 degrees anticlockwise
 	function rotateleft() 	 
 	{
 	 	if(counter == 0)
 	 	{
 		 	prev_string = string ;
-		 	string = string + "a_"+ 270 +"/" ;
-		 	 
+		 	string = string + "a_"+ 270 +"/" ;		 	 
 		 	document.getElementById(image_id).src =  string + string_img;
-
 		 	var num = parseInt(image_id);
 		 	imgArray[num-1].src = document.getElementById(image_id).src ;
 		 	 
@@ -200,6 +197,7 @@
 	}
 
 
+	//Rotate the image 90 degrees clockwise
 	function rotateright() 	 
 	{
 	 	if(counter == 0)
@@ -207,14 +205,13 @@
 		 	prev_string = string ;
 		 	string = string + "a_"+ 90 +"/" ;
 		 	document.getElementById(image_id).src = string + string_img;
-		 	//angle = angle + 90 ;
-		 	//  $.cloudinary.image("domokun.jpg" , {angle:270});
-
 		 	var num = parseInt(image_id);
 		 	imgArray[num-1].src = document.getElementById(image_id).src ;
 	 	}
 	}
 
+
+	//Function to select the crop area of image
 	function crop() 	 
 	{
 	 	 $("#"+image_id).imgAreaSelect({
@@ -234,6 +231,7 @@
 	}
 
 
+	// Crop the selected area
 	function accept() 	 
 	{
 	 	if(counter == 1)
@@ -243,7 +241,6 @@
 		 	string =  string + "x_"+ x1 + ",y_"+ y1+",w_"+width+",h_"+height+",c_crop/";
 		 	document.getElementById(image_id).src = string + string_img;
 		 	counter = 0;
-
 		 	var num = parseInt(image_id);
 		 	imgArray[num-1].src = document.getElementById(image_id).src ;		 	 
 
@@ -252,6 +249,7 @@
 
    	}
 
+   	//Deselect the selected cropped area
    	function cancel() 	 
 	{
 	 	counter = 0;
@@ -259,6 +257,7 @@
         		
    	}
 
+   	//Take the image to the just previous state
    	function undo() 	 
 	{
 	 	if(counter==0)
@@ -276,7 +275,7 @@
 <script type="text/javascript">
 
 	
-
+	//Array to contain all the images. Each time we get a new image, store it in imgArray.
 	var imgArray = new Array();
 		
 		 
@@ -287,7 +286,7 @@
 
 			if(i%2==0)
 			{
-				var src = 'http://upload.wikimedia.org/wikipedia/commons/4/46/Jennifer_Lawrence_at_the_83rd_Academy_Awards.jpg';
+				var src = 'http://res.cloudinary.com/diukn5sr6/image/upload/domokun.jpg';
 				imgArray[i].src = src ;
 				create_thumbnail(src) ;
 
