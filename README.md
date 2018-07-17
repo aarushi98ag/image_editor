@@ -15,7 +15,7 @@ This image editor is a web based image editor using Javascript. It is based on o
 
 4) Functionalities of rotateleft(), rotateright(), crop(), accept(), cancel(), undo() are provided.
 
-The editor makes use of two seperate plugins- 1)imgareaselect for cropping and 2)lightslider-master for the image slider.
+The editor makes use of two seperate plugins- 1) imgareaselect for cropping and 2) lightslider-master for the image slider. 
 
 ### DEMO
 Refer to samplepopup.html. The code contains proper documentation. 
@@ -27,7 +27,8 @@ All the required CSS and Javascript files are attached within the folder and com
 Store all the images in imgArray and call create_thumbnail over the image link. After the transformations, you can access the transformed images through the same array imgArray. (Note the transformed image would have an URL associated with the Cloudinary account).
 
 ### Customisation
-You can customise the slider according to your need. All the defaults are mentioned in lightslider.js and can be modified according to the need.
+You can customise the slider according to your need. All the defaults are mentioned in lightslider.js and can be modified according to the need. 
+By default we have scaled all the images to 300px-300px to fit the width of the popup. This can be adjusted according to the need.
 
 
 ### AND YOU ARE SET TO GO!!! 
