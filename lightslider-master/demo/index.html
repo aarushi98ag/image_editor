@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <title>lightSlider Demo</title>
+    
+    <link rel="stylesheet"  href="../src/css/lightslider.css"/>
+    <style>
+    	ul{
+			list-style: none outside none;
+		    padding-left: 0;
+            margin: 0;
+		}
+        .demo .item{
+            margin-bottom: 60px;
+        }
+		.content-slider li{
+		    background-color: #ed3020;
+		    text-align: center;
+		    color: #FFF;
+		}
+		.content-slider h3 {
+		    margin: 0;
+		    padding: 70px 0;
+		}
+		.demo{
+			width: 800px;
+		}
+    </style>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="../src/js/lightslider.js"></script> 
+    <script>
+    	 $(document).ready(function() {
+			$("#content-slider").lightSlider({
+                loop:true,
+                keyPress:true
+            });
+            var slider = $('#image-gallery').lightSlider({
+                gallery:true,
+                item:1,
+                thumbItem:9,
+                slideMargin: 0,
+                speed:500,
+                // auto:true,
+                loop:true,
+                onSliderLoad: function() {
+                    $('#image-gallery').removeClass('cS-hidden');
+                }  
+            });
+
+                $('#getCurrentSlideCount').click(function(){
+                   alert(slider.getCurrentSlideCount()); 
+                });
+		});
+    </script>
+</head>
+<body>
+	<div class="demo">
+        <div class="item">            
+            <div class="clearfix">
+                <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
+                    <!-- <li data-thumb="image.jpg"> 
+                        <img src="image.jpg" />
+                         </li> -->
+                    <li data-thumb="image.png"> 
+                        <img src="image.png" />
+                         </li>
+                    <li data-thumb="domokun.jpg"> 
+                        <img src="domokun.jpg" />
+                         </li>
+                   <!--  <li data-thumb="image.jpg"> 
+                        <img src="image.jpg" />
+                         </li> -->
+                    <li data-thumb="image.png"> 
+                        <img src="image.png" />
+                         </li>
+                    <li data-thumb="domokun.jpg"> 
+                        <img src="domokun.jpg" />
+                         </li>
+                   <!--  <li data-thumb="image.jpg"> 
+                        <img src="image.jpg" />
+                         </li> -->
+                    <li data-thumb="image.png"> 
+                        <img src="image.png" />
+                         </li>
+                </ul>
+            </div>
+        </div>        
+    </div>	
+
+    <button id ="getCurrentSlideCount"> Get Current Slide Count </button>
+</body>
