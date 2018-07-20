@@ -9,7 +9,7 @@ This image editor is a web based image editor using Javascript. It is based on o
 
 1) To use the editor, one must first of all have a cloudinary account. Use set_credentials function of the Cloudinary account where you want the transformations. It requires the cloud name, api_key and api_secret of your account. (For demo purpose, I have added my own personal credentials.)
 
-2) Given a http link, upload() function would upload the image to the the Cloudinary account.
+2) Given a http link, upload() function would upload the image to the the Cloudinary account. (NOTE: The image that is to be uploaded must have a **http link** and not https.) 
 
 3) Create_thumbnail will make a DOM object out of every new image given to it and add it to the image slider.(image-gallery)
 
