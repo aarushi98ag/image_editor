@@ -18,7 +18,7 @@ This image editor is a web based image editor using Javascript. It is based on o
 The editor makes use of two seperate plugins- 1) imgareaselect for cropping and 2) lightslider-master for the image slider. 
 
 ### DEMO
-Refer to #### samplepopup.html. The code contains proper documentation. (To get the editor without popup, refer to sample.html).
+Refer to ### samplepopup.html. The code contains proper documentation. (To get the editor without popup, refer to sample.html).
 
 ### DEPENDENCIES
 All the required CSS and Javascript files are attached within the folder and commented out. In demo file, I have used the link of the files at our local server. 
