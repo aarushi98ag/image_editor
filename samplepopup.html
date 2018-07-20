@@ -1,7 +1,10 @@
 <!-- This code is written by Aarushi Agarwal.A web based image editor using Javascript and Cloudinary services. -->
 <!doctype html>
 <html>
-	<head>	 
+	<head>
+ 
+		 
+	 
 		 
 		<!-- <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> -->
 		<!-- <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css"> -->
@@ -164,13 +167,18 @@
 	   	count = count + 1;
 	    
 	}
-	 
+
+	//function for uploading the image on cloudinary platform
+
+	function upload(parameter1)
+	{
+		$.cloudinary.image(parameter1, {type: "fetch"});
+	}
 	 
 	// Upload the image to cloudinary
 	function getURl(parameter1)
 	{
 			document.getElementById(image_id).src = parameter1;
-			//  imp line----->	$.cloudinary.image(parameter1, {type: "fetch"});
 			string = "http://res.cloudinary.com/" + cloud + "/image/fetch/"+scale;
 			prev_string = string;
 			string_img = parameter1; 
@@ -270,9 +278,11 @@
 
 <script type="text/javascript">
 
-	
+	set_credentials('diukn5sr6', '335317579573276', 'phSrYWbXf_TNYDToLyqzptrnU88');
+
 	//Array to contain all the images. Each time we get a new image, store it in imgArray.
-	var imgArray = new Array();		
+	var imgArray = new Array();
+		
 		 
 
 		for(i=0; i<9 ;i++)
@@ -282,6 +292,7 @@
 			if(i%2==0)
 			{
 				var src = 'http://res.cloudinary.com/diukn5sr6/image/upload/domokun.jpg';
+				upload(src);
 				imgArray[i].src = src ;
 				create_thumbnail(src) ;
 
@@ -289,15 +300,14 @@
 
 			else
 			{
-				var src = 'http://mdb.ibcdn.com/665f4c54621811e6890f40f2e9694aa0.jfif';	
+				var src = 'http://res.cloudinary.com/diukn5sr6/image/upload/v1532066037/Jennifer_Lawrence_at_the_83rd_Academy_Awards.jpg';	
+				upload(src);
 				imgArray[i].src = src ;
 				create_thumbnail(src) ;
 			}
 
-		}
+		}	
 
- 	
-	set_credentials('diukn5sr6', '335317579573276', 'phSrYWbXf_TNYDToLyqzptrnU88');
 
 	document.getElementById("button1").onclick = function() {rotateleft()}; 	 //var angle = 0 ;	 
 	document.getElementById("button2").onclick = function() {rotateright()};	
@@ -305,6 +315,7 @@
 	document.getElementById("button4").onclick = function() {accept()};
 	document.getElementById("button5").onclick = function() {cancel()};
 	document.getElementById("button6").onclick = function() {undo()};
+
 	
 
 </script>
