@@ -1,10 +1,7 @@
 <!-- This code is written by Aarushi Agarwal.A web based image editor using Javascript and Cloudinary services. -->
 <!doctype html>
 <html>
-	<head>
- 
-		 
-	 
+	<head>	 
 		 
 		<!-- <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> -->
 		<!-- <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css"> -->
@@ -167,7 +164,6 @@
 	   	count = count + 1;
 	    
 	}
-
 	 
 	 
 	// Upload the image to cloudinary
@@ -276,8 +272,7 @@
 
 	
 	//Array to contain all the images. Each time we get a new image, store it in imgArray.
-	var imgArray = new Array();
-		
+	var imgArray = new Array();		
 		 
 
 		for(i=0; i<9 ;i++)
@@ -301,12 +296,8 @@
 
 		}
 
-
-
  	
 	set_credentials('diukn5sr6', '335317579573276', 'phSrYWbXf_TNYDToLyqzptrnU88');
-	
-
 
 	document.getElementById("button1").onclick = function() {rotateleft()}; 	 //var angle = 0 ;	 
 	document.getElementById("button2").onclick = function() {rotateright()};	
@@ -314,7 +305,6 @@
 	document.getElementById("button4").onclick = function() {accept()};
 	document.getElementById("button5").onclick = function() {cancel()};
 	document.getElementById("button6").onclick = function() {undo()};
-
 	
 
 </script>
