@@ -40,7 +40,7 @@ Store all the images in imgArray and call create_thumbnail over the image link.A
 
 ### Customisation
 You can customise the slider according to your need. All the defaults are mentioned in lightslider.js and can be modified according to the need. 
-By default we have scaled all the images to 300px-300px to fit the width of the popup. This can be adjusted according to the need.
+By default we have scaled all the images to 300px-300px to fit the width of the popup. This can be adjusted according to the need through modifying the height and width needed in 'scale' variable; 
 
 
 ### AND YOU ARE SET TO GO!!! 
