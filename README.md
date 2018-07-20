@@ -14,11 +14,17 @@ This image editor is a web based image editor using Javascript. It is based on o
 3) Create_thumbnail will make a DOM object out of every new image given to it and add it to the image slider.(image-gallery)
 
 4) Functionalities of rotateleft(), rotateright(), crop(), accept(), cancel(), undo() are provided.
+
                    a) rotateleft()- rotate the image 90 degrees anticlockwise.
+                   
                    b) rotateright()- rotate the image 90 degrees clockwise.
+                   
                    c) crop()- select a portion of the image.
+                   
                    d) accept()- crop the selected area.
+                   
                    e) cancel()- If you don't want to crop, and you want to deselect the selected area.
+                   
                    f) undo()- This will take you one step back.(Note this will save just the previous image transformation, not                     all)
                    
 The editor makes use of two seperate plugins- 1) imgareaselect for cropping and 2) lightslider-master for the image slider. 
